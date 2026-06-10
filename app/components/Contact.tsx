@@ -182,7 +182,7 @@ export default function Contact() {
 
             <div className="w-full aspect-video rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
               <iframe
-                src="https://yandex.ru/map-widget/v1/?um=constructor%3A4a3b2c1d&amp;source=constructor&amp;ll=82.987910%2C55.041500&amp;z=16&amp;pt=82.987910%2C55.041500%2Cpm2rdm"
+                src="https://yandex.ru/map-widget/v1/?ll=82.977321%2C54.990562&z=16&pt=82.977108%2C54.989586%2Cpm2grm"
                 width="100%"
                 height="100%"
                 allowFullScreen
