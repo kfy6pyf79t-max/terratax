@@ -4,17 +4,17 @@ export default function Founder() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           
-          {/* Левая часть: Фото (заглушка) */}
+          {/* Левая часть: Фото основателя */}
           <div className="relative">
-            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
-              <div className="text-center p-8">
-                <svg className="w-24 h-24 text-yellow-500/30 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-                <p className="text-slate-400 text-sm">Фото основателя</p>
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
+            <div className="relative aspect-[3/4] max-w-md mx-auto rounded-3xl overflow-hidden shadow-2xl">
+              <img
+                src="/images/founder.jpg"
+                alt="Терре Дмитрий Васильевич — основатель TerraTax.Agency"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
             </div>
+            {/* Декоративный элемент сзади */}
             <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-yellow-500/10 rounded-full blur-2xl -z-10" />
           </div>
 
@@ -45,13 +45,13 @@ export default function Founder() {
                 <li className="flex items-start gap-3">
                   <span className="mt-2 w-2 h-2 bg-yellow-500 rounded-full flex-shrink-0"></span>
                   <span className="text-slate-700 leading-relaxed">
-                    <strong className="text-slate-900">Более 10 лет практического опыта</strong> в секторе контрольной работы: прошел путь от инспектора до руководителя, курирующего направление контрольной работы налогового органа.
+                    <strong className="text-slate-900">Более 10 лет практического опыта</strong> в частном секторе: прошел путь от бухгалтера до финансового директора, поэтому понимаю бизнес-процессы изнутри, а не только по учебникам.
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="mt-2 w-2 h-2 bg-yellow-500 rounded-full flex-shrink-0"></span>
                   <span className="text-slate-700 leading-relaxed">
-                    <strong className="text-slate-900">Уникальный опыт работы в ФНС:</strong> проведение мероприятий налогового контроля в отношении организаций широкого отраслевого спектра.
+                    <strong className="text-slate-900">Уникальный опыт работы в ФНС:</strong> лично проводил выездные налоговые проверки, поэтому знаю все алгоритмы, регламенты и «болевые точки» инспекторов.
                   </span>
                 </li>
               </ul>
