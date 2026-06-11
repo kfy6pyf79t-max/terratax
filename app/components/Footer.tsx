@@ -13,11 +13,9 @@ export default function Footer() {
             {/* Колонка 1: О компании */}
             <div className="lg:col-span-1">
               <div className="flex items-center space-x-2 mb-4">
-                <svg viewBox="0 0 100 100" className="w-8 h-8 text-yellow-500">
-                  <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" strokeWidth="2"/>
-                  <circle cx="50" cy="50" r="25" fill="none" stroke="currentColor" strokeWidth="1.5"/>
-                  <line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" strokeWidth="1.5"/>
-                  <line x1="10" y1="50" x2="90" y2="50" stroke="currentColor" strokeWidth="1.5"/>
+                <svg viewBox="0 0 100 100" className={`w-full h-full 'text-slate-900' : 'text-white'}`}>
+                  <circle cx="50" cy="50" r="38" fill="none" stroke="currentColor" strokeWidth="2"/>
+                  <path d="M50 15 L55 45 L85 50 L55 55 L50 85 L45 55 L15 50 L45 45 Z" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
                   <circle cx="50" cy="50" r="4" fill="currentColor"/>
                 </svg>
                 <span className="font-bold text-xl text-white">
