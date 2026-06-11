@@ -9,12 +9,11 @@ export default function Founder() {
           {/* Левая часть: Фото основателя */}
           <div className="relative">
             <div className="relative aspect-[3/4] max-w-md mx-auto rounded-3xl overflow-hidden shadow-2xl">
-              <Image
-                src="/images/founder.jpg"
+              <img
+                src="https://kfy6pyf79t-max.github.io/terratax/images/founder.jpg"
                 alt="Терре Дмитрий Васильевич — основатель TerraTax.Agency"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="w-full h-full object-cover"
+                loading="lazy"
               />
             </div>
             {/* Декоративный элемент сзади */}
