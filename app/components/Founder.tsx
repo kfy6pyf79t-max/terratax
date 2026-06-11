@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default function Founder() {
   return (
     <section id="about" className="py-20 lg:py-32 bg-white">
@@ -7,11 +9,12 @@ export default function Founder() {
           {/* Левая часть: Фото основателя */}
           <div className="relative">
             <div className="relative aspect-[3/4] max-w-md mx-auto rounded-3xl overflow-hidden shadow-2xl">
-              <img
+              <Image
                 src="/images/founder.jpg"
                 alt="Терре Дмитрий Васильевич — основатель TerraTax.Agency"
-                className="w-full h-full object-cover"
-                loading="lazy"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </div>
             {/* Декоративный элемент сзади */}
