@@ -1,14 +1,24 @@
 export default function Hero() {
     return (
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950">
-        {/* Декоративный фон */}
-        <div className="absolute inset-0 opacity-20" style={{
-          backgroundImage: `radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.3) 0%, transparent 50%),
-                           radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.2) 0%, transparent 50%)`
-        }} />
-  
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Фоновое изображение через тег img */}
+        <img
+          src="https://kfy6pyf79t-max.github.io/terratax/images/hero-bg.jpg"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+          aria-hidden="true"
+        />
+
+        {/* Затемнение с «просветом» в правом нижнем углу для картуши */}
+        <div
+         className="absolute inset-0"
+         style={{
+          background: 'radial-gradient(circle at 85% 15%, rgba(15, 23, 42, 0.95) 0%, transparent 60%), radial-gradient(circle at 85% 85%, transparent 0%, rgba(15, 23, 42, 0.6) 20%, rgba(15, 23, 42, 0.95) 55%)'
+        }}
+       />
+
         {/* Контент */}
-        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-8">
             <span className="w-2 h-2 bg-yellow-500 rounded-full mr-2 animate-pulse" />
             <span className="text-sm text-white/90 font-medium">Налоговый консалтинг премиум-класса</span>
@@ -24,7 +34,7 @@ export default function Hero() {
   
           <p className="text-lg sm:text-xl text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed">
             Оптимизация бизнес-процессов для защиты на внешнем и внутреннем контурах. 
-            Экспертный подход с опытом работы в ФНС.
+            Экспертный подход с практическими знаниями работы ФНС.
           </p>
   
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
