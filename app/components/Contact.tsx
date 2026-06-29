@@ -87,24 +87,55 @@ export default function Contact() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!validate()) return;
-
+    
+    // Используем вашу существующую функцию validate()
+    if (!validate()) {
+      return;
+    }
+    
     setIsSubmitting(true);
     
-    // Имитация отправки на сервер (2 секунды)
+    // 🔧 ВАШ EMAIL УЖЕ УКАЗАН ПРАВИЛЬНО:
+    const recipientEmail = 'terre_dima@mail.ru';
+    
+    // Формируем тему письма
+    const subject = encodeURIComponent('Заявка с сайта TerraTax.Agency');
+    
+    // Формируем тело письма
+    const body = encodeURIComponent(
+      `Здравствуйте!\n\n` +
+      `Меня зовут ${formData.firstName} ${formData.lastName}.\n\n` +
+      `📱 Телефон: ${formData.phone}\n` +
+      `📧 Email: ${formData.email}\n` +
+      `🏢 Компания: ${formData.company || 'Не указана'}\n` +
+      `💼 Должность: ${formData.position || 'Не указана'}\n\n` +
+      `💬 Сообщение:\n${formData.message}\n\n` +
+      `---\nОтправлено с сайта Terre.Agency`
+    );
+    
+    // Открываем почтовый клиент
+    window.location.href = `mailto:${recipientEmail}?subject=${subject}&body=${body}`;
+    
+    // Показываем сообщение об успехе
+    setIsSubmitting(false);
+    setIsSuccess(true);
+    
+    // Сбрасываем форму через 3 секунды
     setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSuccess(true);
       setFormData({
-        firstName: '', lastName: '', phone: '', email: '',
-        company: '', position: '', message: '', privacy: false
+        firstName: '',
+        lastName: '',
+        phone: '',
+        email: '',
+        company: '',
+        position: '',
+        message: '',
+        privacy: false
       });
-      setTimeout(() => setIsSuccess(false), 5000);
-    }, 2000);
+    }, 3000);
   };
-
   return (
     <section id="contact" className="py-20 lg:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
