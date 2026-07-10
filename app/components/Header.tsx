@@ -3,12 +3,12 @@
 import { useState, useEffect } from 'react';
 
 const navLinks = [
-  { href: '#services', label: 'Услуги' },
-  { href: '#about', label: 'О компании' },
-  { href: '#team', label: 'Команда' },
-  { href: '#tools', label: 'Инструменты' },
-  { href: '#clients', label: 'Клиентам' },
-  { href: '#contact', label: 'Контакты' },
+   // { href: '#services', label: 'Услуги' }, // временно отключено
+   { href: '#advantages', label: 'Преимущества' },
+   { href: '#about', label: 'О компании' },
+   // { href: '#team', label: 'Команда' }, // временно отключено
+   { href: '#tools', label: 'Инструменты' },
+   { href: '#contact', label: 'Контакты' },
 ];
 
 export default function Header() {

@@ -15,7 +15,7 @@ const tools = [
   },
   {
     id: 'perimeter',
-    title: '«Двойной периметр»',
+    title: '«Двойной периметр» - 2P',
     description: 'Наша флагманская методика. Комплексная диагностика внешнего (контрагенты, рынок, госорганы) и внутреннего (документооборот, кадры, активы) контура защиты бизнеса.',
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -26,7 +26,7 @@ const tools = [
   {
     id: 'marker',
     title: '«Маркер конкурента/контрагента»',
-    description: 'Оригинальная система скоринга надежности партнеров. Оценка по 25+ параметрам, включая аффилированность, налоговую нагрузку и судебную историю, для минимизации рисков по сделкам.',
+    description: 'Оригинальная система скоринга надежности оппонентов/партнеров. Оценка по 25+ параметрам, включая аффилированность, налоговую нагрузку и судебную историю, для минимизации рисков по сделкам.',
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
@@ -64,7 +64,7 @@ export default function Tools() {
         {/* Заголовок секции */}
         <div className="text-center mb-16">
           <span className="text-yellow-600 font-semibold text-sm uppercase tracking-wider">
-            Продукты
+            Предложения
           </span>
           <h2 className="mt-3 text-3xl lg:text-4xl font-bold text-slate-900">
             Инструменты и методики

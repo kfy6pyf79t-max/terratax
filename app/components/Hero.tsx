@@ -21,7 +21,7 @@ export default function Hero() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-8">
             <span className="w-2 h-2 bg-yellow-500 rounded-full mr-2 animate-pulse" />
-            <span className="text-sm text-white/90 font-medium">Налоговый консалтинг премиум-класса</span>
+            <span className="text-sm text-white/90 font-medium">Налоговый консалтинг экстра-класса</span>
           </div>
   
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">

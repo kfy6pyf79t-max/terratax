@@ -23,7 +23,7 @@ export default function Founder() {
           {/* Правая часть: Информация */}
           <div>
             <span className="text-yellow-600 font-semibold text-sm uppercase tracking-wider">
-              Основатель и ведущий эксперт
+              Основатель
             </span>
             <h2 className="mt-3 text-3xl lg:text-4xl font-bold text-slate-900">
               Терре Дмитрий Васильевич
@@ -47,13 +47,13 @@ export default function Founder() {
                 <li className="flex items-start gap-3">
                   <span className="mt-2 w-2 h-2 bg-yellow-500 rounded-full flex-shrink-0"></span>
                   <span className="text-slate-700 leading-relaxed">
-                    <strong className="text-slate-900">Более 10 лет практического опыта</strong> в частном секторе: прошел путь от бухгалтера до финансового директора, поэтому понимаю бизнес-процессы изнутри, а не только по учебникам.
+                    <strong className="text-slate-900">Уникальный практический опыт в частном секторе:</strong> успешное решение сложных кейсов благодаря мультисценарному подходу
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="mt-2 w-2 h-2 bg-yellow-500 rounded-full flex-shrink-0"></span>
                   <span className="text-slate-700 leading-relaxed">
-                    <strong className="text-slate-900">Уникальный опыт работы в ФНС:</strong> лично проводил выездные налоговые проверки, поэтому знаю все алгоритмы, регламенты и «болевые точки» инспекторов.
+                    <strong className="text-slate-900">Более 10 лет работы в ФНС:</strong> лично проводил выездные налоговые проверки, поэтому знаю все алгоритмы, регламенты и «болевые точки» мероприятий
                   </span>
                 </li>
               </ul>
