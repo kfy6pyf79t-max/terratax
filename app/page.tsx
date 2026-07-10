@@ -2,7 +2,7 @@ import Hero from './components/Hero';
 import Vision from './components/Vision';
 import Team from './components/Team';
 import Advantages from './components/Advantages';
-import ServicesRoadmap from './components/ServicesRoadmap'; // <-- Переместили сюда
+// import ServicesRoadmap from './components/ServicesRoadmap'; // <-- Переместили сюда
 import Founder from './components/Founder';
 import TargetAudience from './components/TargetAudience';
 import Tools from './components/Tools';
@@ -17,7 +17,7 @@ export default function Home() {
       <Vision />
       <Team />
       <Advantages />
-      <ServicesRoadmap />  {/* Теперь идет после Преимуществ и перед Основателем */}
+      {/* <ServicesRoadmap /> */} {/* Теперь идет после Преимуществ и перед Основателем */}
       <Founder />
       <TargetAudience />
       <Tools />
