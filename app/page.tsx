@@ -1,6 +1,6 @@
 import Hero from './components/Hero';
 import Vision from './components/Vision';
-import Team from './components/Team';
+// import Process from './components/Process';
 import Advantages from './components/Advantages';
 // import ServicesRoadmap from './components/ServicesRoadmap'; // <-- Переместили сюда
 import Founder from './components/Founder';
@@ -15,7 +15,7 @@ export default function Home() {
     <main className="min-h-screen flex flex-col">
       <Hero />
       <Vision />
-      <Team />
+      {/* <Process /> */}
       <Advantages />
       {/* <ServicesRoadmap /> */} {/* Теперь идет после Преимуществ и перед Основателем */}
       <Founder />

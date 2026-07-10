@@ -72,7 +72,24 @@ export default function Advantages() {
               </div>
             ))}
           </div>
+
+           {/* Блок с цифрами и достижениями */}
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-gradient-to-br from-slate-900 to-slate-800 text-white p-8 rounded-2xl text-center hover:shadow-xl transition-shadow duration-300">
+            <div className="text-4xl lg:text-5xl font-bold text-yellow-500 mb-2">27 лет</div>
+            <div className="text-slate-300 font-medium">На службе у бизнеса</div>
+          </div>
+          <div className="bg-gradient-to-br from-slate-900 to-slate-800 text-white p-8 rounded-2xl text-center hover:shadow-xl transition-shadow duration-300">
+            <div className="text-4xl lg:text-5xl font-bold text-yellow-500 mb-2">100%</div>
+            <div className="text-slate-300 font-medium">Соблюдение сроков и конфиденциальности</div>
+          </div>
+          <div className="bg-gradient-to-br from-slate-900 to-slate-800 text-white p-8 rounded-2xl text-center hover:shadow-xl transition-shadow duration-300">
+            <div className="text-4xl lg:text-5xl font-bold text-yellow-500 mb-2">24/7</div>
+            <div className="text-slate-300 font-medium">Поддержка в критических ситуациях</div>
+          </div>
         </div>
-      </section>
-    );
-  }
+
+        </div>
+    </section>
+  );
+}
