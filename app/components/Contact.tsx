@@ -20,45 +20,27 @@ export default function Contact() {
 
   // Функция для автоматического форматирования телефона
   const formatPhone = (value: string) => {
-    // Оставляем только цифры
     let digits = value.replace(/\D/g, '');
-    
-    // Если начали вводить с 8, заменяем на 7
-    if (digits.startsWith('8')) {
-      digits = '7' + digits.slice(1);
-    }
-    // Если первая цифра не 7, добавляем её
-    if (!digits.startsWith('7')) {
-      digits = '7' + digits;
-    }
+    if (digits.startsWith('8')) digits = '7' + digits.slice(1);
+    if (!digits.startsWith('7')) digits = '7' + digits;
 
-    // Формируем красивую строку
     let formatted = '+7';
     if (digits.length > 1) formatted += ' (' + digits.substring(1, 4);
     if (digits.length >= 4) formatted += ') ' + digits.substring(4, 7);
     if (digits.length >= 7) formatted += '-' + digits.substring(7, 9);
     if (digits.length >= 9) formatted += '-' + digits.substring(9, 11);
-    
     return formatted;
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
     const checked = (e.target as HTMLInputElement).checked;
-    
     let newValue = type === 'checkbox' ? checked : value;
 
-    // Применяем маску только к полю телефона
-    if (name === 'phone') {
-      newValue = formatPhone(value);
-    }
+    if (name === 'phone') newValue = formatPhone(value);
 
-    setFormData(prev => ({
-      ...prev,
-      [name]: newValue
-    }));
+    setFormData(prev => ({ ...prev, [name]: newValue }));
 
-    // Очищаем ошибку при вводе
     if (errors[name]) {
       setErrors(prev => {
         const newErrors = { ...prev };
@@ -71,10 +53,7 @@ export default function Contact() {
   const validate = () => {
     const newErrors: Record<string, string> = {};
     if (!formData.firstName.trim()) newErrors.firstName = 'Введите имя';
-    
-    // Проверка телефона (должно быть 18 символов: "+7 (XXX) XXX-XX-XX")
     if (formData.phone.length < 18) newErrors.phone = 'Введите полный номер телефона';
-    
     if (!formData.email.trim()) {
       newErrors.email = 'Введите email';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
@@ -82,28 +61,17 @@ export default function Contact() {
     }
     if (!formData.message.trim()) newErrors.message = 'Введите сообщение';
     if (!formData.privacy) newErrors.privacy = 'Необходимо согласие на обработку данных';
-    
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    // Используем вашу существующую функцию validate()
-    if (!validate()) {
-      return;
-    }
-    
+    if (!validate()) return;
     setIsSubmitting(true);
-    
-    // 🔧 ВАШ EMAIL УЖЕ УКАЗАН ПРАВИЛЬНО:
+
     const recipientEmail = 'terre_dima@mail.ru';
-    
-    // Формируем тему письма
-    const subject = encodeURIComponent('Заявка с сайта TerraTax.Agency');
-    
-    // Формируем тело письма
+    const subject = encodeURIComponent('Заявка с сайта Terre.Agency');
     const body = encodeURIComponent(
       `Здравствуйте!\n\n` +
       `Меня зовут ${formData.firstName} ${formData.lastName}.\n\n` +
@@ -114,28 +82,28 @@ export default function Contact() {
       `💬 Сообщение:\n${formData.message}\n\n` +
       `---\nОтправлено с сайта Terre.Agency`
     );
-    
-    // Открываем почтовый клиент
-    window.location.href = `mailto:${recipientEmail}?subject=${subject}&body=${body}`;
-    
-    // Показываем сообщение об успехе
-    setIsSubmitting(false);
-    setIsSuccess(true);
-    
-    // Сбрасываем форму через 3 секунды
+
+    const mailtoLink = `mailto:${recipientEmail}?subject=${subject}&body=${body}`;
+    window.open(mailtoLink, '_blank');
+
     setTimeout(() => {
-      setFormData({
-        firstName: '',
-        lastName: '',
-        phone: '',
-        email: '',
-        company: '',
-        position: '',
-        message: '',
-        privacy: false
-      });
-    }, 3000);
+      setIsSubmitting(false);
+      setIsSuccess(true);
+      setTimeout(() => {
+        setFormData({
+          firstName: '',
+          lastName: '',
+          phone: '',
+          email: '',
+          company: '',
+          position: '',
+          message: '',
+          privacy: false,
+        });
+      }, 3000);
+    }, 1000);
   };
+
   return (
     <section id="contact" className="py-20 lg:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -152,7 +120,7 @@ export default function Contact() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-          
+
           {/* Левая колонка: Контакты */}
           <div>
             <div className="space-y-8 mb-10">
@@ -200,13 +168,28 @@ export default function Contact() {
               </div>
             </div>
 
+            {/* Мессенджеры: Telegram и WhatsApp */}
             <div className="flex flex-wrap gap-4 mb-10">
-              <a href="https://t.me/+79130188382" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-3 bg-[#0088cc] hover:bg-[#0077b3] text-white font-medium rounded-xl transition-colors">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.548.223l.188-2.623 4.823-4.351c.192-.192-.054-.3-.297-.108L8.32 13.617l-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.94z"/></svg>
+              <a
+                href="https://t.me/+79130188382"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-6 py-3 bg-[#0088cc] hover:bg-[#0077b3] text-white font-medium rounded-xl transition-colors"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.548.223l.188-2.623 4.823-4.351c.192-.192-.054-.3-.297-.108L8.32 13.617l-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.94z" />
+                </svg>
                 Telegram
               </a>
-              <a href="https://wa.me/79130188382" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-3 bg-[#25D366] hover:bg-[#128C7E] text-white font-medium rounded-xl transition-colors">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              <a
+                href="https://wa.me/79130188382"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-6 py-3 bg-[#25D366] hover:bg-[#128C7E] text-white font-medium rounded-xl transition-colors"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                </svg>
                 WhatsApp
               </a>
             </div>
@@ -218,7 +201,7 @@ export default function Contact() {
                 height="100%"
                 allowFullScreen
                 style={{ border: 0 }}
-                title="Яндекс Карта - TerraTax.Agency офис"
+                title="Яндекс Карта - Terre.Agency офис"
                 loading="lazy"
               />
             </div>
@@ -237,124 +220,199 @@ export default function Contact() {
                 <p className="text-slate-600">Мы свяжемся с вами в течение 2 часов в рабочее время.</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1.5">Имя *</label>
-                    <input
-                      type="text" name="firstName" value={formData.firstName} onChange={handleChange}
-                      className={`w-full px-4 py-3 bg-white border rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-colors ${errors.firstName ? 'border-red-500' : 'border-slate-200'}`}
-                      placeholder="Ваше имя"
-                    />
-                    {errors.firstName && <p className="mt-1 text-sm text-red-500">{errors.firstName}</p>}
+              <>
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                      <label className="block text-sm font-medium text-slate-700 mb-1.5">Имя *</label>
+                      <input
+                        type="text"
+                        name="firstName"
+                        value={formData.firstName}
+                        onChange={handleChange}
+                        className={`w-full px-4 py-3 bg-white border rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-colors ${errors.firstName ? 'border-red-500' : 'border-slate-200'}`}
+                        placeholder="Ваше имя"
+                      />
+                      {errors.firstName && <p className="mt-1 text-sm text-red-500">{errors.firstName}</p>}
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-slate-700 mb-1.5">Фамилия</label>
+                      <input
+                        type="text"
+                        name="lastName"
+                        value={formData.lastName}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-colors"
+                        placeholder="Ваша фамилия"
+                      />
+                    </div>
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1.5">Фамилия</label>
-                    <input
-                      type="text" name="lastName" value={formData.lastName} onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-colors"
-                      placeholder="Ваша фамилия"
-                    />
-                  </div>
-                </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1.5">Телефон *</label>
-                    <input
-                      type="tel" name="phone" value={formData.phone} onChange={handleChange}
-                      className={`w-full px-4 py-3 bg-white border rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-colors ${errors.phone ? 'border-red-500' : 'border-slate-200'}`}
-                      placeholder="+7 (___) ___-__-__"
-                    />
-                    {errors.phone && <p className="mt-1 text-sm text-red-500">{errors.phone}</p>}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                      <label className="block text-sm font-medium text-slate-700 mb-1.5">Телефон *</label>
+                      <input
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        className={`w-full px-4 py-3 bg-white border rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-colors ${errors.phone ? 'border-red-500' : 'border-slate-200'}`}
+                        placeholder="+7 (___) ___-__-__"
+                      />
+                      {errors.phone && <p className="mt-1 text-sm text-red-500">{errors.phone}</p>}
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-slate-700 mb-1.5">Email *</label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        className={`w-full px-4 py-3 bg-white border rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-colors ${errors.email ? 'border-red-500' : 'border-slate-200'}`}
+                        placeholder="email@example.com"
+                      />
+                      {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
+                    </div>
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1.5">Email *</label>
-                    <input
-                      type="email" name="email" value={formData.email} onChange={handleChange}
-                      className={`w-full px-4 py-3 bg-white border rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-colors ${errors.email ? 'border-red-500' : 'border-slate-200'}`}
-                      placeholder="email@example.com"
-                    />
-                    {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
-                  </div>
-                </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1.5">Компания</label>
-                    <input
-                      type="text" name="company" value={formData.company} onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-colors"
-                      placeholder="Название компании"
-                    />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                      <label className="block text-sm font-medium text-slate-700 mb-1.5">Компания</label>
+                      <input
+                        type="text"
+                        name="company"
+                        value={formData.company}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-colors"
+                        placeholder="Название компании"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-slate-700 mb-1.5">Должность</label>
+                      <input
+                        type="text"
+                        name="position"
+                        value={formData.position}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-colors"
+                        placeholder="Ваша должность"
+                      />
+                    </div>
                   </div>
+
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1.5">Должность</label>
-                    <input
-                      type="text" name="position" value={formData.position} onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-colors"
-                      placeholder="Ваша должность"
+                    <label className="block text-sm font-medium text-slate-700 mb-1.5">Сообщение *</label>
+                    <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      rows={4}
+                      className={`w-full px-4 py-3 bg-white border rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-colors resize-none ${errors.message ? 'border-red-500' : 'border-slate-200'}`}
+                      placeholder="Опишите вашу задачу или вопрос"
                     />
+                    {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message}</p>}
                   </div>
-                </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">Сообщение *</label>
-                  <textarea
-                    name="message" value={formData.message} onChange={handleChange} rows={4}
-                    className={`w-full px-4 py-3 bg-white border rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-colors resize-none ${errors.message ? 'border-red-500' : 'border-slate-200'}`}
-                    placeholder="Опишите вашу задачу или вопрос"
-                  />
-                  {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message}</p>}
-                </div>
+                  <div className="flex items-start gap-3">
+                    <input
+                      type="checkbox"
+                      id="privacy"
+                      name="privacy"
+                      checked={formData.privacy}
+                      onChange={handleChange}
+                      className="mt-1 w-4 h-4 text-yellow-600 border-slate-300 rounded focus:ring-yellow-500"
+                    />
+                    <label htmlFor="privacy" className="text-sm text-slate-600">
+                      Я согласен с{' '}
+                      <a
+                        href="/privacy"
+                        onClick={(e) => e.preventDefault()}
+                        className="text-yellow-600 hover:text-yellow-700 underline"
+                      >
+                        политикой конфиденциальности
+                      </a>{' '}
+                      и даю согласие на обработку персональных данных *
+                    </label>
+                  </div>
+                  {errors.privacy && <p className="text-sm text-red-500 -mt-3">{errors.privacy}</p>}
 
-                <div className="flex items-start gap-3">
-                  <input
-                    type="checkbox" id="privacy" name="privacy" checked={formData.privacy} onChange={handleChange}
-                    className="mt-1 w-4 h-4 text-yellow-600 border-slate-300 rounded focus:ring-yellow-500"
-                  />
-                  <label htmlFor="privacy" className="text-sm text-slate-600">
-                    {/* ИСПРАВЛЕНИЕ 2: Добавлен onClick, чтобы страница не прыгала вверх */}
-                    Я согласен с{' '}
-                    <a 
-                      href="/privacy" 
-                      onClick={(e) => e.preventDefault()} 
-                      className="text-yellow-600 hover:text-yellow-700 underline"
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-yellow-600 hover:bg-yellow-500 disabled:bg-yellow-400 text-white font-semibold rounded-xl shadow-lg hover:shadow-yellow-500/30 transition-all duration-300 transform hover:-translate-y-0.5"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Отправка...
+                      </>
+                    ) : (
+                      <>
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                        </svg>
+                        Отправить заявку
+                      </>
+                    )}
+                  </button>
+
+                  <p className="text-center text-sm text-slate-500">
+                    Отвечаем в течение 2 часов в рабочее время
+                  </p>
+                </form>
+
+                {/* Fallback блок: VK, Viber и Max */}
+                <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-xl">
+                  <p className="text-sm text-blue-900 font-medium mb-2">
+                    💡 Не открылась почта? Напишите нам напрямую:
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+
+                    {/* ВКонтакте */}
+                    <a
+                      href="https://vk.me/terre_dima"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-[#0077FF] hover:bg-[#0066DD] text-white text-sm font-medium rounded-lg transition-colors"
                     >
-                      политикой конфиденциальности
-                    </a>{' '}
-                    и даю согласие на обработку персональных данных *
-                  </label>
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12.785 16.241s.288-.032.436-.194c.136-.148.132-.427.132-.427s-.02-1.304.587-1.496c.598-.189 1.367 1.259 2.182 1.814.616.42 1.084.328 1.084.328l2.177-.03s1.14-.071.599-.964c-.044-.073-.314-.661-1.617-1.869-1.364-1.264-1.182-1.059.462-3.246.999-1.332 1.398-2.146 1.273-2.494-.12-.332-.856-.244-.856-.244l-2.45.015s-.182-.025-.316.056c-.132.079-.217.263-.217.263s-.39 1.037-.91 1.92c-1.096 1.86-1.534 1.96-1.713 1.842-.417-.272-.313-1.095-.313-1.678 0-1.82.276-2.578-.537-2.774-.27-.065-.468-.108-1.157-.115-.884-.009-1.633.003-2.057.21-.282.138-.499.445-.366.462.163.022.532.1.727.365.253.342.244 1.111.244 1.111s.145 2.14-.34 2.404c-.333.182-.79-.189-1.77-1.886-.502-.87-.878-1.83-.878-1.83s-.073-.178-.203-.274c-.158-.116-.378-.153-.378-.153l-2.327.015s-.35.01-.478.162c-.114.135-.009.413-.009.413s1.837 4.304 3.918 6.472c1.9 1.98 4.056 1.85 4.056 1.85h.977z" />
+                      </svg>
+                      ВКонтакте
+                    </a>
+
+                    {/* Viber */}
+                    <a
+                      href="viber://chat?number=%2B79130188382"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-[#7360F2] hover:bg-[#6250DD] text-white text-sm font-medium rounded-lg transition-colors"
+                    >
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M11.4.02C10.28.04 9.15.14 8.05.33c-1.78.31-3.44 1.12-4.76 2.34C1.97 3.87 1.12 5.54.81 7.32.5 9.1.5 10.92.81 12.7c.31 1.78 1.16 3.45 2.48 4.65 1.32 1.22 2.98 2.03 4.76 2.34 1.1.19 2.23.29 3.35.27 1.12.02 2.25-.08 3.35-.27 1.78-.31 3.44-1.12 4.76-2.34 1.32-1.2 2.17-2.87 2.48-4.65.31-1.78.31-3.6 0-5.38-.31-1.78-1.16-3.45-2.48-4.65C18.19 1.46 16.53.65 14.75.34 13.65.15 12.52.05 11.4.02zm0 1.5c1.02-.02 2.05.07 3.06.25 1.48.26 2.86.93 3.96 1.95 1.1.99 1.81 2.38 2.07 3.88.26 1.5.26 3.04 0 4.54-.26 1.5-.97 2.89-2.07 3.88-1.1 1.02-2.48 1.69-3.96 1.95-1.01.18-2.04.27-3.06.25-1.02.02-2.05-.07-3.06-.25-1.48-.26-2.86-.93-3.96-1.95-1.1-.99-1.81-2.38-2.07-3.88-.26-1.5-.26-3.04 0-4.54.26-1.5.97-2.89 2.07-3.88 1.1-1.02 2.48-1.69 3.96-1.95 1.01-.18 2.04-.27 3.06-.25z" />
+                      </svg>
+                      Viber
+                    </a>
+
+                    {/* Max */}
+                    <a
+                      href="https://max.ru/Rx"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#0077FF] to-[#7360F2] hover:from-[#0066DD] hover:to-[#6250DD] text-white text-sm font-medium rounded-lg transition-colors shadow-sm"
+                    >
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M3 3h3.6l2.7 9.9L12 6.6l2.7 6.3L17.4 3H21v18h-3V9.6l-3 7.8-2.7-6.3-2.7 6.3-3-7.8V21H3V3z" />
+                      </svg>
+                      Max
+                    </a>
+
+                  </div>
                 </div>
-                {errors.privacy && <p className="text-sm text-red-500 -mt-3">{errors.privacy}</p>}
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-yellow-600 hover:bg-yellow-500 disabled:bg-yellow-400 text-white font-semibold rounded-xl shadow-lg hover:shadow-yellow-500/30 transition-all duration-300 transform hover:-translate-y-0.5"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                      </svg>
-                      Отправка...
-                    </>
-                  ) : (
-                    <>
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                      </svg>
-                      Отправить заявку
-                    </>
-                  )}
-                </button>
-
-                <p className="text-center text-sm text-slate-500">
-                  Отвечаем в течение 2 часов в рабочее время
-                </p>
-              </form>
+              </>
             )}
           </div>
         </div>
