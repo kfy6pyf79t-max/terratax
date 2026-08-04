@@ -53,7 +53,7 @@ export default function Founder() {
                 <li className="flex items-start gap-3">
                   <span className="mt-2 w-2 h-2 bg-yellow-500 rounded-full flex-shrink-0"></span>
                   <span className="text-slate-700 leading-relaxed">
-                    <strong className="text-slate-900">Более 10 лет работы в ФНС:</strong> лично проводил выездные налоговые проверки, поэтому знаю все алгоритмы, регламенты и «болевые точки» мероприятий
+                    <strong className="text-slate-900">Более 10 лет работы в ФНС:</strong> личное проведение нестандартных и нишевых налоговых проверок, в этой связи обладание незаурядными практическими знаниями в сфере налогового контроля
                   </span>
                 </li>
               </ul>
