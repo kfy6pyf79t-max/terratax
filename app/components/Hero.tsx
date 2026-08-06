@@ -41,7 +41,7 @@ export default function Hero() {
             <a href="#contact" className="px-8 py-4 bg-yellow-600 hover:bg-yellow-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-yellow-500/30 transition-all duration-300 transform hover:-translate-y-1">
               Обратиться
             </a>
-            <a href="#services" className="px-8 py-4 border-2 border-white/30 hover:border-white/60 text-white font-semibold rounded-xl hover:bg-white/10 transition-all duration-300">
+            <a href="#targetaudience" className="px-8 py-4 border-2 border-white/30 hover:border-white/60 text-white font-semibold rounded-xl hover:bg-white/10 transition-all duration-300">
               Подробности
             </a>
           </div>
