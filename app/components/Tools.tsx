@@ -43,16 +43,6 @@ const tools = [
       </svg>
     ),
   },
-  {
-    id: 'audit',
-    title: 'Аудит с погружением',
-    description: 'Глубокий, детальный анализ финансовой и налоговой документации за последние 3 года с целью выявления "слепых" рисковых зон и разработки пошагового плана мероприятий до предъявления претензий',
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-      </svg>
-    ),
-  },
 ];
 
 export default function Tools() {
@@ -83,7 +73,7 @@ export default function Tools() {
               <button
                 key={tool.id}
                 onClick={() => setActiveTool(tool)}
-                className={`w-full text-left p-5 rounded-xl border transition-all duration-300 flex items-center gap-4 ${
+                className={`w-full text-left p-6 rounded-xl border transition-all duration-300 flex items-center gap-4 ${
                   activeTool.id === tool.id
                     ? 'bg-white border-yellow-500 shadow-md'
                     : 'bg-transparent border-slate-200 hover:border-yellow-300 hover:bg-white/50'
@@ -107,7 +97,7 @@ export default function Tools() {
 
           {/* Правая колонка: Детальное описание */}
           <div className="flex items-center">
-            <div className="w-full p-8 lg:p-10 bg-white rounded-2xl border border-slate-100 shadow-lg">
+            <div className="w-full p-8 lg:p-8 bg-white rounded-2xl border border-slate-100 shadow-lg">
               <div className="w-16 h-16 flex items-center justify-center bg-yellow-100 text-yellow-700 rounded-2xl mb-6">
                 {activeTool.icon}
               </div>
