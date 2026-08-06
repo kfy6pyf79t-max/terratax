@@ -10,10 +10,10 @@ const nextConfig = {
   trailingSlash: true,
   
   // basePath применяется ТОЛЬКО при публикации на GitHub Pages
-  basePath: isProduction ? '/terratax' : '',
+  // {basePath: isProduction ? '/terratax' : ''}, // временно отключено ,
   
   // assetPrefix применяется ТОЛЬКО при публикации на GitHub Pages
-  assetPrefix: isProduction ? '/terratax/' : '',
+  // {assetPrefix: isProduction ? '/terratax/' : ''}, // временно отключено,
 };
 
 module.exports = nextConfig;

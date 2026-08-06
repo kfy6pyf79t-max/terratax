@@ -3,7 +3,7 @@ export default function Hero() {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Фоновое изображение через тег img */}
         <img
-          src="https://kfy6pyf79t-max.github.io/terratax/images/hero-bg.jpg"
+          src="/images/hero-bg.jpg"
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
           aria-hidden="true"

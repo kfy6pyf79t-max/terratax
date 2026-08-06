@@ -10,7 +10,7 @@ export default function Founder() {
           <div className="relative">
             <div className="relative aspect-[3/4] max-w-md mx-auto rounded-3xl overflow-hidden shadow-2xl">
               <img
-                src="https://kfy6pyf79t-max.github.io/terratax/images/founder.jpg" 
+                src="/images/founder.jpg" 
                 alt="Терре Дмитрий Васильевич — основатель TerraTax.Agency"
                 className="w-full h-full object-cover"
                 loading="lazy"
@@ -53,7 +53,7 @@ export default function Founder() {
                 <li className="flex items-start gap-3">
                   <span className="mt-2 w-2 h-2 bg-yellow-500 rounded-full flex-shrink-0"></span>
                   <span className="text-slate-700 leading-relaxed">
-                    <strong className="text-slate-900">Более 10 лет работы в ФНС:</strong> личное проведение нестандартных и нишевых налоговых проверок, в этой связи обладание незаурядными практическими знаниями в сфере налогового контроля
+                    <strong className="text-slate-900">Более 10 лет работы в ФНС:</strong> личное проведение нестандартных и нишевых налоговых проверок, незаурядные практическе знания и навыки в сфере налогового контроля
                   </span>
                 </li>
               </ul>
