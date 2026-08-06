@@ -15,6 +15,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ru">
+      <head>
+        {/* 👇 ВСТАВЬТЕ СЮДА КОД ИЗ ЯНДЕКС.ВЕБМАСТЕРА 👇 */}
+        <meta name="yandex-verification" content="2dd97544e54a5ff7" />
+      </head>
      <body className="bg-gray-50 text-gray-900 antialiased">
         <Header />
         <YandexMetrika />
