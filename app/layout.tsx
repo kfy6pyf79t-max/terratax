@@ -4,8 +4,14 @@ import Header from './components/Header';
 import YandexMetrika from './components/YandexMetrika';
 
 export const metadata: Metadata = {
-  title: 'Terre.Agency — Налоговая безопасность бизнеса',
+  title: 'TerreTax.Agency — Налоговая безопасность бизнеса',
   description: 'Двойной периметр защиты активов и репутации вашего бизнеса.',
+  verification: {
+    yandex: '2dd97544e54a5ff7',
+  },
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({
