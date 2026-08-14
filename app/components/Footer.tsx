@@ -31,11 +31,10 @@ export default function Footer() {
             <div>
               <h4 className="text-white font-bold mb-4">Навигация</h4>
               <ul className="space-y-3 text-sm">
-                <li><a href="#services" className="hover:text-yellow-500 transition-colors">Услуги</a></li>
+                <li><a href="#advantages" className="hover:text-yellow-500 transition-colors">Преимущества</a></li>
                 <li><a href="#about" className="hover:text-yellow-500 transition-colors">О компании</a></li>
-                <li><a href="#team" className="hover:text-yellow-500 transition-colors">Команда</a></li>
+                <li><a href="#targetaudience" className="hover:text-yellow-500 transition-colors">Целевая аудитория</a></li>
                 <li><a href="#tools" className="hover:text-yellow-500 transition-colors">Инструменты</a></li>
-                <li><a href="#clients" className="hover:text-yellow-500 transition-colors">Клиентам</a></li>
               </ul>
             </div>
   
@@ -46,7 +45,7 @@ export default function Footer() {
                 <li>
                   <a href="tel:+79130188382" className="flex items-center gap-2 hover:text-yellow-500 transition-colors">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-                    +7 (918) 018-8383
+                    +7 (913) 018-8383
                   </a>
                 </li>
                 <li>
