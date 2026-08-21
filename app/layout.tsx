@@ -24,6 +24,17 @@ export default function RootLayout({
       <head>
         {/* 👇 ВСТАВЬТЕ СЮДА КОД ИЗ ЯНДЕКС.ВЕБМАСТЕРА 👇 */}
         <meta name="yandex-verification" content="2dd97544e54a5ff7" />
+        {/* 👇 ДОБАВЬТЕ ЭТОТ БЛОК 👇 */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (window.location.hostname === 'kfy6pyf79t-max.github.io') {
+                window.location.replace('https://terratax.ru' + window.location.pathname + window.location.search);
+              }
+            `,
+          }}
+        />
+        {/* 👆 КОНЕЦ БЛОКА 👆 */}
       </head>
      <body className="bg-gray-50 text-gray-900 antialiased">
         <Header />
