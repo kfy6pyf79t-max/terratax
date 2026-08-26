@@ -70,7 +70,7 @@ export default function Contact() {
     if (!validate()) return;
     setIsSubmitting(true);
 
-    const recipientEmail = 'terre_dima@mail.ru';
+    const recipientEmail = 'info@terratax.ru';
     const subject = encodeURIComponent('Заявка с сайта Terre.Agency');
     const body = encodeURIComponent(
       `Здравствуйте!\n\n` +
@@ -146,8 +146,8 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="font-bold text-slate-900 mb-1">Email</h3>
-                  <a href="mailto:terre_dima@mail.ru" className="text-lg text-yellow-600 hover:text-yellow-700 font-medium transition-colors">
-                    terre_dima@mail.ru
+                  <a href="mailto:info@terratax.ru" className="text-lg text-yellow-600 hover:text-yellow-700 font-medium transition-colors">
+                    info@terratax.ru
                   </a>
                 </div>
               </div>
