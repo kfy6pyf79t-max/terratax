@@ -1,11 +1,13 @@
 import type { Metadata } from 'next';
+import LocalBusinessSchema from './components/LocalBusinessSchema';
 import './globals.css';
 import Header from './components/Header';
 import YandexMetrika from './components/YandexMetrika';
 
 export const metadata: Metadata = {
-  title: 'TerreTax.Agency — Налоговая безопасность бизнеса',
+  title: 'TerreTax.Agency — Налоговая безопасность бизнеса | Управление налоговой нагрузкой, сопровождение проверок в Новосибирске и по всей стране',
   description: 'Двойной периметр защиты активов и репутации вашего бизнеса.',
+  keywords: 'налоговый консалтинг новосибирск, налоговый консультант новосибирск, оптимизация налогов новосибирск, сопровождение налоговых проверок, восстановление бухгалтерского учета',
   verification: {
     yandex: '2dd97544e54a5ff7',
   },
@@ -37,6 +39,7 @@ export default function RootLayout({
         {/* 👆 КОНЕЦ БЛОКА 👆 */}
       </head>
      <body className="bg-gray-50 text-gray-900 antialiased">
+        <LocalBusinessSchema />
         <Header />
         <YandexMetrika />
         {children}
