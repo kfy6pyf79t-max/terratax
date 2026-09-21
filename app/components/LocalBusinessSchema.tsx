@@ -3,6 +3,7 @@ export default function LocalBusinessSchema() {
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
       "name": "Terre.Agency — Налоговый консалтинг",
+      "image": "https://terratax.ru/logo.png", 
       "url": "https://terratax.ru",
       "telephone": "+7-913-018-83-82",
       "address": {
