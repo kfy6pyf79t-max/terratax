@@ -19,7 +19,7 @@ export default function Footer() {
                   <circle cx="50" cy="50" r="4" fill="currentColor"/>
                 </svg>
                 <span className="font-bold text-xl text-white">
-                  TerraTax<span className="text-yellow-500">.Agency</span>
+                  TerraTax<span className="text-yellow-500">.Bureau</span>
                 </span>
               </div>
               <p className="text-sm leading-relaxed mb-6">
@@ -84,7 +84,7 @@ export default function Footer() {
   
           {/* Нижняя полоса (Copyright) */}
           <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
-            <p>© {currentYear} TerrаTax.Agency. Все права защищены.</p>
+            <p>© {currentYear} TerrаTax.Bureau. Все права защищены.</p>
             <p className="text-slate-500">Разработано с фокусом на безопасность вашего бизнеса.</p>
           </div>
         </div>

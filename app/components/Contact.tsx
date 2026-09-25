@@ -71,7 +71,7 @@ export default function Contact() {
     setIsSubmitting(true);
 
     const recipientEmail = 'info@terratax.ru';
-    const subject = encodeURIComponent('Заявка с сайта Terre.Agency');
+    const subject = encodeURIComponent('Заявка с сайта Terre.Bureau');
     const body = encodeURIComponent(
       `Здравствуйте!\n\n` +
       `Меня зовут ${formData.firstName} ${formData.lastName}.\n\n` +
@@ -80,7 +80,7 @@ export default function Contact() {
       `🏢 Компания: ${formData.company || 'Не указана'}\n` +
       `💼 Должность: ${formData.position || 'Не указана'}\n\n` +
       `💬 Сообщение:\n${formData.message}\n\n` +
-      `---\nОтправлено с сайта Terre.Agency`
+      `---\nОтправлено с сайта Terre.Bureau`
     );
 
     const mailtoLink = `mailto:${recipientEmail}?subject=${subject}&body=${body}`;
@@ -201,7 +201,7 @@ export default function Contact() {
                 height="100%"
                 allowFullScreen
                 style={{ border: 0 }}
-                title="Яндекс Карта - Terre.Agency офис"
+                title="Яндекс Карта - Terre.Bureau офис"
                 loading="lazy"
               />
             </div>

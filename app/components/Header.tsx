@@ -41,7 +41,7 @@ export default function Header() {
             <span className={`font-bold text-xl ${
               isScrolled ? 'text-slate-900' : 'text-white'
             }`}>
-              TerraTax<span className="text-yellow-600">.Agency</span>
+              TerraTax<span className="text-yellow-600">.Bureau</span>
             </span>
           </a>
 
